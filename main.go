@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"os"
 	"sesi7/config"
 	"sesi7/gin/controller"
 	"sesi7/gin/repository/gorm"
@@ -28,7 +29,7 @@ func main() {
 	employeeHandler := controller.NewEmployeeHandler(empRepo)
 
 	router := router.NewRouter(employeeHandler)
-	router.CreateRouter().Run(":4000")
+	router.CreateRouter().Run(fmt.Sprintf(":%v", os.Getenv("PORT")))
 }
 
 type User struct {
